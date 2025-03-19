@@ -29,15 +29,8 @@ cat << 'EOF'
 === T3rn Testnet V2 ===
 EOF
 sleep 1
-read -s -p "Enter your T3rn Wallet Private Key: " PRIVATE_KEY_LOCAL
+read -s -p "Enter your T3rn Wallet Private Key: " PRIVATE_KEY_LOCAL </dev/tty
 echo
 export PRIVATE_KEY_LOCAL
-echo "Starting T3rn executor in Screen session..."
-screen -dmS t3rn bash -c "./executor; exec bash"
-sleep 5
-if screen -list | grep -q "t3rn"; then
-    echo "Executor started successfully in Screen session 't3rn'. Use 'screen -r t3rn' to attach."
-else
-    echo "Executor failed to start. Check logs or retry."
-    exit 1
-fi
+echo "Starting T3rn executor..."
+./executor
